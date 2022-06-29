@@ -25,4 +25,12 @@ class Agent {
         $onetime_mailer->send(htmlspecialchars($user_mail));
     }
 
+
+    public static function checker(string $email, int $onetime_pass, string $conf_filepass) {
+        $user_mail = htmlspecialchars($email);
+        $db = new ConnectDB($conf_filepass);
+        $result = $db->login_authentication($user_mail, $onetime_pass);
+        echo $result;
+    }
+
 }
