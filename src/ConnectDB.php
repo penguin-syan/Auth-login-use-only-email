@@ -9,9 +9,9 @@ class ConnectDB {
     function __construct(string $conf_filepass) {
         $config = include($conf_filepass);
         $this->pdo = new PDO(
-            $conf_filepass['database_dns'],
-            $conf_filepass['database_username'],
-            $conf_filepass['database_password']
+            $config['database_dsn'],
+            $config['database_username'],
+            $config['database_password']
         );        
     }
 

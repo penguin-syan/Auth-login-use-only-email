@@ -17,13 +17,13 @@ class SendMail{
          $this->mailer->CharSet = "UTF-8";
          $this->mailer->SMTPDebug = 0;
          $this->mailer->isSMTP();
-         $this->mailer->Host = $config['mailer_host'];
+         $this->mailer->Host = $this->config['mailer_host'];
          $this->mailer->SMTPAuth = true;
-         $this->mailer->Username = $config['mailer_username'];
-         $this->mailer->Password = $config['mailer_password'];
+         $this->mailer->Username = $this->config['mailer_username'];
+         $this->mailer->Password = $this->config['mailer_password'];
          $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-         $this->mailer->Port = $config['mailer_port'];
-         $this->mailer->setFrom($mailer_setFrom, mb_encode_mimeheader($mailer_setFromHeadler));
+         $this->mailer->Port = $this->config['mailer_port'];
+         $this->mailer->setFrom($this->config['mailer_setFrom'], $this->config['mailer_setFromHeadler']);
       }
       catch(Exception $e){
          return false;
@@ -32,7 +32,8 @@ class SendMail{
 
    function set_login_key(int $login_key) {
       $this->mailer->isHTML(false);
-      $this->mailer->Subject = mb_encode_mimeheader('['.$this->config['service_name'].']Login code');
+      $this->mailer->Subject = '['.$this->config['service_name'].']Login code';
+      $this->mailer->Body = "Your login code:[$login_key]";
       $this->mailer->AltBody = "Your login code:[$login_key]";
    }
    
