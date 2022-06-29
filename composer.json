@@ -14,5 +14,7 @@
             "email": "member@penguin-syan.tokyo"
         }
     ],
-    "require": {}
+    "require": {
+        "phpmailer/phpmailer": "^6.6"
+    }
 }
